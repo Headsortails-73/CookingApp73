@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14110F">
+  <meta name="description" content="Vos recettes, prêtes à cuisiner hors ligne.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Cuisine">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <title>Cuisine</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: system-ui, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      --fond: #14110F;
+      --surface: #1C1917;
+      --surface-2: #262220;
+      --trait: #3A332E;
+      --texte: #F5F0EA;
+      --texte-2: #B9AFA4;
+      --accent: #D97757;
+      --sur-accent: #14110F;
+      --succes: #8FB08A;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--fond);
+      overscroll-behavior-y: contain;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--fond);
+      color: var(--texte);
+      overscroll-behavior-y: contain;
+    }
+
+    button {
+      min-width: 56px;
+      min-height: 56px;
+      border: 1px solid var(--trait);
+      border-radius: 20px;
+      padding: 16px;
+      background: var(--surface);
+      color: var(--texte);
+      font: 600 20px/1.2 system-ui, sans-serif;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible {
+      outline: 3px solid var(--texte-2);
+      outline-offset: 3px;
+    }
+
+    button:disabled {
+      opacity: 0.45;
+    }
+
+    button.primary {
+      min-height: 64px;
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--sur-accent);
+    }
+
+    button.quiet {
+      background: var(--surface-2);
+    }
+
+    #app {
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding:
+        calc(20px + env(safe-area-inset-top))
+        max(20px, env(safe-area-inset-right))
+        max(34px, calc(34px + env(safe-area-inset-bottom)))
+        max(20px, env(safe-area-inset-left));
+    }
+
+    .screen {
+      width: min(100%, 680px);
+      min-height: calc(100dvh - 54px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      margin-inline: auto;
+    }
+
+    .screen.enter {
+      animation: enter 140ms ease-out both;
+    }
+
+    @keyframes enter {
+      from { opacity: 0.72; }
+      to { opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      min-height: 56px;
+      margin-bottom: 24px;
+    }
+
+    .back-button {
+      border-color: transparent;
+      background: transparent;
+      color: var(--texte-2);
+      font-size: 20px;
+      text-align: left;
+      margin-left: -8px;
+      padding-inline: 8px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      color: var(--texte);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      margin: 32px 0 16px;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .meta {
+      color: var(--texte-2);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .recipe-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .recipe-card {
+      display: flex;
+      width: 100%;
+      min-height: 72px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .recipe-card-title {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .recipe-card-meta {
+      flex: 0 0 auto;
+      color: var(--texte-2);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .stepper {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid var(--trait);
+      border-radius: 999px;
+      background: var(--surface-2);
+    }
+
+    .stepper button {
+      width: 56px;
+      min-width: 56px;
+      min-height: 56px;
+      border: 0;
+      border-radius: 50%;
+      padding: 0;
+      background: transparent;
+      font-size: 24px;
+    }
+
+    .stepper-value {
+      min-width: 70px;
+      color: var(--texte);
+      font-size: 17px;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+    }
+
+    .recipe-actions {
+      display: grid;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .section-label {
+      color: var(--texte-2);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .ingredient-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ingredient-chip {
+      display: grid;
+      gap: 8px;
+      min-height: 56px;
+      align-content: center;
+      border: 1px solid var(--trait);
+      border-radius: 14px;
+      padding: 8px 16px;
+      background: var(--surface-2);
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .ingredient-chip-quantity {
+      color: var(--accent);
+      font-size: 17px;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    .step-header {
+      margin: 0 0 24px;
+      color: var(--texte-2);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .step-text {
+      margin: 0 0 24px;
+      color: var(--texte);
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+
+    .cook-screen {
+      display: flex;
+      min-height: calc(100dvh - 54px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+      flex-direction: column;
+    }
+
+    .cook-main {
+      flex: 1 0 auto;
+    }
+
+    .cook-navigation {
+      position: sticky;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: minmax(56px, 0.7fr) minmax(56px, 1.3fr);
+      gap: 8px;
+      margin-top: 24px;
+      padding-top: 8px;
+      background: var(--fond);
+    }
+
+    .cook-navigation .primary {
+      width: 100%;
+    }
+
+    .overview-wrap {
+      margin-top: 16px;
+      border: 1px solid var(--trait);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .overview {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 13px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .overview th,
+    .overview td {
+      min-height: 40px;
+      border-right: 1px solid var(--trait);
+      border-bottom: 1px solid var(--trait);
+      padding: 8px 4px;
+      overflow-wrap: anywhere;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .overview th:first-child,
+    .overview td:first-child {
+      width: 40%;
+      padding-inline: 8px;
+      color: var(--texte);
+      text-align: left;
+    }
+
+    .overview th {
+      color: var(--texte-2);
+      font-weight: 600;
+    }
+
+    .overview-quantity {
+      color: var(--accent);
+    }
+
+    .overview tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .overview th:last-child,
+    .overview td:last-child {
+      border-right: 0;
+    }
+
+    .shopping-copy {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .copied-toast {
+      min-height: 24px;
+      margin-top: 8px;
+      color: var(--succes);
+      font-size: 15px;
+    }
+
+    .offline-note {
+      margin-top: 24px;
+      color: var(--succes);
+      font-size: 14px;
+    }
+
+    .empty-note {
+      color: var(--texte-2);
+      line-height: 1.5;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <p class="empty-note">Chargement des recettes…</p>
+  </main>
+  <script src="./recipes.js"></script>
+  <script src="./scale.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
