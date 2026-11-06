@@ -3,6 +3,72 @@
    Convention : dans step.text, {id} = quantité de cet ingrédient pour CETTE étape
    (override s'il y en a un, sinon la quantité de base). Jamais de nombre en dur. */
 globalThis.RECIPES = [
+   {
+  "schemaVersion": 1,
+  "id": "low-calorie-chicken-biryani",
+  "title": "Low calorie chicken biryani",
+  "source": "https://www.youtube.com/watch?v=-zVk6Z8MiDI",
+  "sourceServingsLabel": "[À VÉRIFIER: aucun nombre de portions indiqué dans la source]",
+  "language": "en",
+  "baseServings": 1,
+  "ingredients": [
+    { "id": "rice", "name": "rice", "note": "[À VÉRIFIER: « washed rice, unwashed rice » — une seule sorte de riz (rincé ou non) ou les deux ? Aucune quantité donnée dans la source]" },
+    { "id": "chicken", "name": "chicken", "note": "[À VÉRIFIER: le mot est répété (« chicken, chicken ») dans la transcription ; aucune quantité donnée]" },
+    { "id": "salt", "name": "salt", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { "id": "pepper", "name": "pepper", "note": "[À VÉRIFIER: « pepper » désigne-t-il le poivre ou un poivron ? Aucune quantité donnée]" },
+    { "id": "garlic-powder", "name": "garlic powder", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { "id": "turmeric", "name": "turmeric", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { "id": "paprika", "name": "paprika", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { "id": "chili-flakes", "name": "chili flakes", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { "id": "onion", "name": "onion", "note": "[À VÉRIFIER: le mot est répété (« onion, onion ») dans la transcription ; aucune quantité donnée]" },
+    { "id": "red-pepper", "name": "red pepper", "note": "[À VÉRIFIER: poivron rouge ou piment rouge ? Aucune quantité donnée]" },
+    { "id": "peas", "name": "peas", "note": "[À VÉRIFIER: le mot est répété (« peas, some peas ») dans la transcription ; aucune quantité donnée]" },
+    { "id": "greek-yogurt", "name": "Greek yogurt", "note": "[À VÉRIFIER: transcription « Fat-ree Greek yogurt » = « fat-free Greek yogurt » ? Aucune quantité donnée]" },
+    { "id": "coconut-milk", "name": "coconut milk", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { "id": "water", "name": "water", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { "id": "stock", "name": "stock", "note": "[À VÉRIFIER: type de bouillon non précisé ; aucune quantité donnée]" },
+    { "id": "coriander", "name": "coriander", "note": "[À VÉRIFIER: « Pop of coriander lime » — garniture ajoutée à la fin ? Aucune quantité donnée]" },
+    { "id": "lime", "name": "lime", "note": "[À VÉRIFIER: « Pop of coriander lime » — garniture ajoutée à la fin ? Aucune quantité donnée]" }
+  ],
+  "steps": [
+    {
+      "text": "Did you know if you had washed rice, unwashed rice, chicken, chicken, the seasonings, salt, pepper, garlic powder, turmeric, paprika, chili flakes.",
+      "uses": ["rice", "chicken", "salt", "pepper", "garlic-powder", "turmeric", "paprika", "chili-flakes"]
+    },
+    {
+      "text": "Let's add some spice, baby. Onion, onion, pepper, red pepper, peas, some peas.",
+      "uses": ["onion", "red-pepper", "peas"]
+    },
+    {
+      "text": "Fat-ree Greek yogurt. Greek yogurt like coconut milk. coconut milk and water.",
+      "uses": ["greek-yogurt", "coconut-milk", "water"]
+    },
+    {
+      "text": "We're leveling this one up with some stock. Then give it a mix.",
+      "uses": ["stock"]
+    },
+    {
+      "text": "All right, let's attempt to mix it all together.",
+      "uses": []
+    },
+    {
+      "text": "Then whack into an oven at 180 [À VÉRIFIER: 180 °C ou 180 °F ?] for 1 hour. Into the oven for 1 hour.",
+      "uses": []
+    },
+    {
+      "text": "Take it out and you get this delicious low calorie chicken biryani. This smells insane.",
+      "uses": []
+    },
+    {
+      "text": "Pop of coriander lime.",
+      "uses": ["coriander", "lime"]
+    },
+    {
+      "text": "This is just over 500 calories and 50 g of protein.",
+      "uses": []
+    }
+  ]
+},
 {
   schemaVersion: 1, id: "mon-couscous-ultime", title: "Mon couscous « ultime »",
   source: "livre (Ottolenghi, éd. française)", sourceServingsLabel: "Pour 4 personnes ou plus",
