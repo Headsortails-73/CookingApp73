@@ -138,29 +138,46 @@
       return [total.ingredient.id, total.isNeed ? "au besoin" : total.quantity];
     }));
     const stepHeaders = recipe.steps.map(function (_, index) {
-      return "<th scope=\"col\">Étape " + (index + 1) + "</th>";
+      const emptyBelow = rows.length && !rows[0].steps.has(index)
+        ? ' class="overview-empty-below"'
+        : "";
+      return "<th scope=\"col\"" + emptyBelow + ">Étape " + (index + 1) + "</th>";
     }).join("");
-    const body = rows.map(function (row) {
+    const body = rows.map(function (row, rowIndex) {
+      const nextRow = rows[rowIndex + 1];
       const cells = recipe.steps.map(function (_, index) {
-        const quantity = row.steps.get(index) || "—";
-        const content = quantity === "—" || quantity === "•"
-          ? escapeHtml(quantity)
+        const quantity = row.steps.get(index);
+        const content = quantity === undefined
+          ? ""
           : '<span class="overview-quantity">' + escapeHtml(quantity) + "</span>";
-        return "<td>" + content + "</td>";
+        const classes = [];
+        if (quantity === undefined) classes.push("overview-empty");
+        if (index + 1 < recipe.steps.length && !row.steps.has(index + 1)) {
+          classes.push("overview-empty-edge");
+        }
+        if (nextRow && !nextRow.steps.has(index)) {
+          classes.push("overview-empty-below");
+        }
+        return '<td' + (classes.length ? ' class="' + classes.join(" ") + '"' : "") +
+          ">" + content + "</td>";
       }).join("");
       const total = totals.get(row.ingredient.id) || "au besoin";
       const totalCell = total === "au besoin"
         ? escapeHtml(total)
         : '<span class="overview-quantity">' + escapeHtml(total) + "</span>";
-      return "<tr><td>" + escapeHtml(row.ingredient.name) + "</td>" + cells +
+      const rowHeaderClass = row.steps.has(0) ? "" : ' class="overview-empty-edge"';
+      return '<tr><th scope="row"' + rowHeaderClass + ">" +
+        escapeHtml(row.ingredient.name) + "</th>" + cells +
         "<td>" + totalCell + "</td></tr>";
     }).join("");
-    const columns = '<colgroup><col style="width:40%">' +
+    const columns = '<colgroup><col class="overview-ingredient-column">' +
       recipe.steps.map(function () {
-        return "<col>";
+        return '<col class="overview-step-column">';
       }).join("") + "<col></colgroup>";
-    return '<div class="overview-wrap"><table class="overview" aria-label="Ingrédients par étape">' +
-      columns + "<thead><tr><th scope=\"col\">Ingrédient</th>" + stepHeaders +
+    return '<p class="overview-scroll-hint">Faites défiler horizontalement pour voir toutes les étapes.</p>' +
+      '<div class="overview-wrap" role="region" aria-label="Vue d’ensemble des quantités, défilement horizontal" tabindex="0">' +
+      '<table class="overview" aria-label="Ingrédients par étape">' + columns +
+      "<thead><tr><th scope=\"col\">Ingrédient</th>" + stepHeaders +
       "<th scope=\"col\">Total</th></tr></thead><tbody>" + body +
       "</tbody></table></div>";
   }
@@ -399,8 +416,8 @@
     });
   }
 
-  if (!Array.isArray(recipes) || recipes.length !== 7) {
-    throw new Error("Les sept recettes ne sont pas disponibles.");
+  if (!Array.isArray(recipes) || recipes.length !== 9) {
+    throw new Error("Les neuf recettes ne sont pas disponibles.");
   }
   if (!scale) throw new Error("Le module de mise à l’échelle est indisponible.");
   render();

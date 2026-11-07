@@ -22,7 +22,7 @@
       --trait: #3A332E;
       --texte: #F5F0EA;
       --texte-2: #B9AFA4;
-      --accent: #D97757;
+      --accent: #8EA58C;
       --sur-accent: #14110F;
       --succes: #8FB08A;
     }
@@ -306,40 +306,83 @@
       margin-top: 16px;
       border: 1px solid var(--trait);
       border-radius: 14px;
-      overflow: hidden;
+      overflow: auto;
       background: var(--surface);
+      -webkit-overflow-scrolling: touch;
     }
 
     .overview {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
+      width: max-content;
+      min-width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
       font-size: 13px;
       font-variant-numeric: tabular-nums;
     }
 
+    .overview-ingredient-column {
+      width: 160px;
+    }
+
+    .overview-step-column {
+      width: 100px;
+    }
+
     .overview th,
     .overview td {
-      min-height: 40px;
       border-right: 1px solid var(--trait);
       border-bottom: 1px solid var(--trait);
-      padding: 8px 4px;
-      overflow-wrap: anywhere;
+      padding: 12px 10px;
+      white-space: nowrap;
       text-align: center;
       vertical-align: middle;
     }
 
+    .overview thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: var(--surface-2);
+    }
+
     .overview th:first-child,
-    .overview td:first-child {
-      width: 40%;
-      padding-inline: 8px;
+    .overview tbody th {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      max-width: 160px;
+      overflow: hidden;
+      padding-inline: 12px;
+      background: var(--surface);
       color: var(--texte);
+      font-weight: 500;
+      text-overflow: ellipsis;
       text-align: left;
     }
 
-    .overview th {
+    .overview thead th:first-child {
+      z-index: 3;
+      background: var(--surface-2);
+      font-weight: 600;
+    }
+
+    .overview thead th {
       color: var(--texte-2);
       font-weight: 600;
+    }
+
+    .overview .overview-empty {
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      background: transparent;
+    }
+
+    .overview .overview-empty-edge {
+      border-right-color: transparent;
+    }
+
+    .overview .overview-empty-below {
+      border-bottom-color: transparent;
     }
 
     .overview-quantity {
@@ -350,9 +393,19 @@
       border-bottom: 0;
     }
 
+    .overview tr:last-child th {
+      border-bottom: 0;
+    }
+
     .overview th:last-child,
     .overview td:last-child {
       border-right: 0;
+    }
+
+    .overview-scroll-hint {
+      margin-top: 8px;
+      color: var(--texte-2);
+      font-size: 13px;
     }
 
     .shopping-copy {

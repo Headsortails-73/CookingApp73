@@ -1,6 +1,6 @@
 "use strict";
 
-const CACHE_NAME = "cuisine-v6";
+const CACHE_NAME = "cuisine-v9";
 const APP_SHELL = [
   "./",
   "./index.html",

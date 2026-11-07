@@ -1,72 +1,57 @@
-/* recipes.js — R1–R7, Phase 2 nettoyé/validé.
-   Ordre : R1 couscous | R2 chachouka | R3 parm | R4 risotto | R5 houmous | R6 mozzarella | R7 tarte
+/* recipes.js — R1–R9.
+   Ordre : R1 chicken biryani | R2 couscous | R3 chachouka | R4 parm | R5 risotto | R6 houmous | R7 mozzarella | R8 tarte | R9 tofu biryani
    Convention : dans step.text, {id} = quantité de cet ingrédient pour CETTE étape
    (override s'il y en a un, sinon la quantité de base). Jamais de nombre en dur. */
 globalThis.RECIPES = [
-   {
-  "schemaVersion": 1,
-  "id": "low-calorie-chicken-biryani",
-  "title": "Low calorie chicken biryani",
-  "source": "https://www.youtube.com/watch?v=-zVk6Z8MiDI",
-  "sourceServingsLabel": "[À VÉRIFIER: aucun nombre de portions indiqué dans la source]",
-  "language": "en",
-  "baseServings": 1,
-  "ingredients": [
-    { "id": "rice", "name": "rice", "note": "[À VÉRIFIER: « washed rice, unwashed rice » — une seule sorte de riz (rincé ou non) ou les deux ? Aucune quantité donnée dans la source]" },
-    { "id": "chicken", "name": "chicken", "note": "[À VÉRIFIER: le mot est répété (« chicken, chicken ») dans la transcription ; aucune quantité donnée]" },
-    { "id": "salt", "name": "salt", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
-    { "id": "pepper", "name": "pepper", "note": "[À VÉRIFIER: « pepper » désigne-t-il le poivre ou un poivron ? Aucune quantité donnée]" },
-    { "id": "garlic-powder", "name": "garlic powder", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
-    { "id": "turmeric", "name": "turmeric", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
-    { "id": "paprika", "name": "paprika", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
-    { "id": "chili-flakes", "name": "chili flakes", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
-    { "id": "onion", "name": "onion", "note": "[À VÉRIFIER: le mot est répété (« onion, onion ») dans la transcription ; aucune quantité donnée]" },
-    { "id": "red-pepper", "name": "red pepper", "note": "[À VÉRIFIER: poivron rouge ou piment rouge ? Aucune quantité donnée]" },
-    { "id": "peas", "name": "peas", "note": "[À VÉRIFIER: le mot est répété (« peas, some peas ») dans la transcription ; aucune quantité donnée]" },
-    { "id": "greek-yogurt", "name": "Greek yogurt", "note": "[À VÉRIFIER: transcription « Fat-ree Greek yogurt » = « fat-free Greek yogurt » ? Aucune quantité donnée]" },
-    { "id": "coconut-milk", "name": "coconut milk", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
-    { "id": "water", "name": "water", "note": "[À VÉRIFIER: aucune quantité donnée dans la source]" },
-    { "id": "stock", "name": "stock", "note": "[À VÉRIFIER: type de bouillon non précisé ; aucune quantité donnée]" },
-    { "id": "coriander", "name": "coriander", "note": "[À VÉRIFIER: « Pop of coriander lime » — garniture ajoutée à la fin ? Aucune quantité donnée]" },
-    { "id": "lime", "name": "lime", "note": "[À VÉRIFIER: « Pop of coriander lime » — garniture ajoutée à la fin ? Aucune quantité donnée]" }
+{
+  schemaVersion: 1,
+  id: "low-calorie-chicken-biryani",
+  title: "Low calorie chicken biryani",
+  source: "https://www.youtube.com/watch?v=-zVk6Z8MiDI",
+  sourceServingsLabel: "[À VÉRIFIER: aucun nombre de portions indiqué dans la source]",
+  language: "en",
+  baseServings: 1,
+  ingredients: [
+    { id: "rice", name: "rice", note: "[À VÉRIFIER: « washed rice, unwashed rice » — une seule sorte de riz (rincé ou non) ou les deux ? Aucune quantité donnée dans la source]" },
+    { id: "chicken", name: "chicken", note: "[À VÉRIFIER: le mot est répété (« chicken, chicken ») dans la transcription ; aucune quantité donnée]" },
+    { id: "salt", name: "salt", note: "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { id: "pepper", name: "pepper", note: "[À VÉRIFIER: « pepper » désigne-t-il le poivre ou un poivron ? Aucune quantité donnée]" },
+    { id: "garlic-powder", name: "garlic powder", note: "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { id: "turmeric", name: "turmeric", note: "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { id: "paprika", name: "paprika", note: "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { id: "chili-flakes", name: "chili flakes", note: "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { id: "onion", name: "onion", note: "[À VÉRIFIER: le mot est répété (« onion, onion ») dans la transcription ; aucune quantité donnée]" },
+    { id: "red-pepper", name: "red pepper", note: "[À VÉRIFIER: poivron rouge ou piment rouge ? Aucune quantité donnée]" },
+    { id: "peas", name: "peas", note: "[À VÉRIFIER: le mot est répété (« peas, some peas ») dans la transcription ; aucune quantité donnée]" },
+    { id: "greek-yogurt", name: "Greek yogurt", note: "[À VÉRIFIER: transcription « Fat-ree Greek yogurt » = « fat-free Greek yogurt » ? Aucune quantité donnée]" },
+    { id: "coconut-milk", name: "coconut milk", note: "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { id: "water", name: "water", note: "[À VÉRIFIER: aucune quantité donnée dans la source]" },
+    { id: "stock", name: "stock", note: "[À VÉRIFIER: type de bouillon non précisé ; aucune quantité donnée]" },
+    { id: "coriander", name: "coriander", note: "[À VÉRIFIER: « Pop of coriander lime » — garniture ajoutée à la fin ? Aucune quantité donnée]" },
+    { id: "lime", name: "lime", note: "[À VÉRIFIER: « Pop of coriander lime » — garniture ajoutée à la fin ? Aucune quantité donnée]" }
   ],
-  "steps": [
+  steps: [
     {
-      "text": "Did you know if you had washed rice, unwashed rice, chicken, chicken, the seasonings, salt, pepper, garlic powder, turmeric, paprika, chili flakes.",
-      "uses": ["rice", "chicken", "salt", "pepper", "garlic-powder", "turmeric", "paprika", "chili-flakes"]
+      text: "Did you know if you had washed rice, unwashed rice, chicken, chicken, the seasonings, salt, pepper, garlic powder, turmeric, paprika, chili flakes.",
+      uses: ["rice", "chicken", "salt", "pepper", "garlic-powder", "turmeric", "paprika", "chili-flakes"]
     },
     {
-      "text": "Let's add some spice, baby. Onion, onion, pepper, red pepper, peas, some peas.",
-      "uses": ["onion", "red-pepper", "peas"]
+      text: "Let's add some spice, baby. Onion, onion, pepper, red pepper, peas, some peas.",
+      uses: ["onion", "red-pepper", "peas"]
     },
     {
-      "text": "Fat-ree Greek yogurt. Greek yogurt like coconut milk. coconut milk and water.",
-      "uses": ["greek-yogurt", "coconut-milk", "water"]
+      text: "Fat-ree Greek yogurt. Greek yogurt like coconut milk. coconut milk and water.",
+      uses: ["greek-yogurt", "coconut-milk", "water"]
     },
     {
-      "text": "We're leveling this one up with some stock. Then give it a mix.",
-      "uses": ["stock"]
+      text: "We're leveling this one up with some stock. Then give it a mix.",
+      uses: ["stock"]
     },
-    {
-      "text": "All right, let's attempt to mix it all together.",
-      "uses": []
-    },
-    {
-      "text": "Then whack into an oven at 180 [À VÉRIFIER: 180 °C ou 180 °F ?] for 1 hour. Into the oven for 1 hour.",
-      "uses": []
-    },
-    {
-      "text": "Take it out and you get this delicious low calorie chicken biryani. This smells insane.",
-      "uses": []
-    },
-    {
-      "text": "Pop of coriander lime.",
-      "uses": ["coriander", "lime"]
-    },
-    {
-      "text": "This is just over 500 calories and 50 g of protein.",
-      "uses": []
-    }
+    { text: "All right, let's attempt to mix it all together.", uses: [] },
+    { text: "Then whack into an oven at 180 [À VÉRIFIER: 180 °C ou 180 °F ?] for 1 hour. Into the oven for 1 hour.", uses: [] },
+    { text: "Take it out and you get this delicious low calorie chicken biryani. This smells insane.", uses: [] },
+    { text: "Pop of coriander lime.", uses: ["coriander", "lime"] },
+    { text: "This is just over 500 calories and 50 g of protein.", uses: [] }
   ]
 },
 {
@@ -306,6 +291,79 @@ globalThis.RECIPES = [
       uses: ["oignons","poivron-rouge","poivron-jaune","aubergine","patate-douce","courgette","thym","feta","ricotta","tomates-cerises"] },
     { text: "Fouettez les œufs et la crème avec un peu de sel et de poivre. Versez délicatement ce mélange sur les légumes sans recouvrir complètement les tomates et les morceaux de fromage. Saupoudrez avec le reste du thym. Enfournez pour 35 à 45 min, jusqu'à ce que l'ensemble soit cuit et doré. Sortez la tarte et laissez-la reposer pendant au moins 10 min avant de casser l'excédent de pâte. Démoulez et servez.",
       uses: ["oeufs","creme","sel","poivre-noir","poivron-rouge","poivron-jaune","aubergine","patate-douce","courgette","feta","ricotta","tomates-cerises","thym","pate-brisee"] }
+  ]
+},
+{
+  schemaVersion: 1,
+  id: "vegan-tofu-biryani",
+  title: "vegan tofu biryani | instant pot & stove top recipe",
+  source: "https://www.secondrecipe.com/tofu-biryani-recipe/",
+  sourceServingsLabel: "[À VÉRIFIER: non précisé dans la source]",
+  language: "en",
+  baseServings: 4,
+  ingredients: [
+    { id: "firm-tofu", name: "firm tofu", qty: 300, unit: "g" },
+    { id: "coconut-yogurt", name: "coconut yogurt", qty: 180, unit: "ml", note: "[À VÉRIFIER: conversion de ¾ cup (180 ml)]" },
+    { id: "dried-mint", name: "dried mint", qty: 1, unit: "cas", note: "[À VÉRIFIER: conversion de 1 tablespoon]" },
+    { id: "garam-masala-powder", name: "garam masala powder", qty: 0.5, unit: "cas", note: "[À VÉRIFIER: conversion de ½ tablespoon]" },
+    { id: "curry-powder", name: "curry powder", qty: 0.5, unit: "cas", note: "[À VÉRIFIER: conversion de ½ tablespoon]" },
+    { id: "ginger-garlic-paste", name: "ginger garlic paste", qty: 1, unit: "cas", note: "[À VÉRIFIER: conversion de 1 tablespoon]" },
+    { id: "salt-marination", name: "salt", qty: 0.5, unit: "cas", note: "for marination [À VÉRIFIER: conversion de ½ tablespoon]" },
+    { id: "oil", name: "oil", qty: 3, unit: "cas", note: "[À VÉRIFIER: conversion de 3 tablespoon]" },
+    { id: "large-onions", name: "large onions", qty: 2, unit: "piece", prep: "finely sliced" },
+    { id: "basmati-rice", name: "basmati rice", qty: 360, unit: "ml", prep: "soaked in water for 30 minutes", note: "[À VÉRIFIER: conversion de 1.5 cups (360 ml)]" },
+    { id: "ginger-paste", name: "ginger paste", qty: 1, unit: "cas", note: "[À VÉRIFIER: conversion de 1 tablespoon]" },
+    { id: "garlic-paste", name: "garlic paste", qty: 1, unit: "cas", note: "[À VÉRIFIER: conversion de 1 tablespoon]" },
+    { id: "green-chilli", name: "green chillies", qty: 1, unit: "piece", optional: true, note: "add if you like it spicy" },
+    { id: "saffron-strands", name: "saffron strands", qty: 7, qtyMax: 8, unit: "piece", prep: "soaked in warm coconut milk/dairy milk" },
+    { id: "warm-coconut-milk", name: "warm coconut milk", note: "or dairy milk, for soaking saffron" },
+    { id: "cumin-seeds", name: "cumin seeds", qty: 1, unit: "cac", note: "[À VÉRIFIER: conversion de 1 teaspoon]" },
+    { id: "bay-leaves", name: "bay leaves", qty: 2, unit: "piece" },
+    { id: "black-cardamom-pods", name: "black cardamom pods", qty: 2, unit: "piece" },
+    { id: "green-cardamom-pods", name: "green cardamom pods", qty: 2, unit: "piece" },
+    { id: "cloves", name: "cloves", qty: 2, unit: "piece" },
+    { id: "black-peppercorns", name: "black peppercorns", qty: 4, unit: "piece" },
+    { id: "salt", name: "salt", note: "to taste" },
+    { id: "mint-leaves", name: "mint leaves", qty: 60, unit: "ml", note: "[À VÉRIFIER: conversion de ¼ cup (60 ml)]" },
+    { id: "coriander-leaves", name: "coriander leaves", qty: 60, unit: "ml", note: "[À VÉRIFIER: conversion de ¼ cup (60 ml)]" },
+    { id: "water", name: "water", note: "for boiling rice [À VÉRIFIER: non listé dans les ingrédients]" },
+    { id: "fried-onions", name: "fried onions", optional: true, note: "[À VÉRIFIER: mentionné dans l'étape, absent de la liste des ingrédients]" },
+    { id: "onion-coconut-yogurt-raita", name: "onion coconut yogurt raita", optional: true, note: "for serving [À VÉRIFIER: mentionné dans l'étape, absent de la liste des ingrédients]" },
+    { id: "lemon-wedges", name: "lemon wedges", optional: true, note: "for serving [À VÉRIFIER: mentionné dans l'étape, absent de la liste des ingrédients]" }
+  ],
+  steps: [
+    {
+      text: "Mix coconut milk or yogurt with spices, salt, and soya chunks [À VÉRIFIER: soya chunks mentionné dans la recette originale de tofu]. Marinate tofu pieces for at least 4 hours or overnight.",
+      uses: ["firm-tofu", "coconut-yogurt", "dried-mint", "garam-masala-powder", "curry-powder", "ginger-garlic-paste", "salt-marination"]
+    },
+    {
+      text: "Heat oil in a heavy-bottom pot or Instant Pot. Add cumin seeds, bay leaves, black cardamom, green cardamom, cloves, and peppercorns.",
+      uses: ["oil", "cumin-seeds", "bay-leaves", "black-cardamom-pods", "green-cardamom-pods", "cloves", "black-peppercorns"]
+    },
+    { text: "Sauté for 1-2 minutes until fragrant.", uses: [] },
+    {
+      text: "Add onions with a pinch of salt and cook until golden brown. Stir in ginger paste, garlic paste, and green chillies.",
+      uses: ["large-onions", { id: "salt", qty: 1, unit: "pincee" }, "ginger-paste", "garlic-paste", "green-chilli"]
+    },
+    {
+      text: "Add marinated tofu and cook for 8-10 minutes. Stir in chopped mint and coriander leaves.",
+      uses: ["firm-tofu", "mint-leaves", "coriander-leaves"]
+    },
+    {
+      text: "In a large pot, bring 5-6 cups of water to a boil with salt.",
+      uses: [{ id: "water", qty: 1200, qtyMax: 1440, unit: "ml" }, "salt"]
+    },
+    { text: "Add soaked basmati rice and cook until 70% done (about 7-8 minutes).", uses: ["basmati-rice"] },
+    { text: "Drain completely.", uses: [] },
+    { text: "Layer the cooked rice over the tofu mixture.", uses: ["basmati-rice", "firm-tofu"] },
+    {
+      text: "Drizzle saffron-infused coconut milk over the rice. Top with fried onions if desired.",
+      uses: ["saffron-strands", "warm-coconut-milk", "fried-onions"]
+    },
+    { text: "Instant Pot: Use Slow Cook mode for 15 minutes.", uses: [] },
+    { text: "Stovetop: Cover with a tight-fitting lid and cook on the lowest flame for 15-20 minutes.", uses: [] },
+    { text: "Let the biryani rest for 10 minutes before fluffing gently.", uses: [] },
+    { text: "Serve with onion coconut yogurt raita and lemon wedges.", uses: ["onion-coconut-yogurt-raita", "lemon-wedges"] }
   ]
 }
 ];
